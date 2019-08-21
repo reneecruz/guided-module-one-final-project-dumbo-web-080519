@@ -38,42 +38,15 @@ class Musician < ActiveRecord::Base
     def create_a_gig 
         puts "What's the name of your gig?"
         gig_name = gets.chomp
-        puts "What's the Venue where your gig is taking place?"
-        gig_venue = gets.chomp
-        gig_venue = Venue.new(name: gig_venue)
-        Gig.create(musician_id: self, name: gig_name, venue: gig_venue)
-        puts "Success! You've created a new gig for #{gig_name} at #{gig_venue.name}!" 
-    end
+        puts "What's the venue of your gig?"
+        gig_venue = gets.chomp 
+        puts "What's the description for your gig?"
+        gig_description = gets.chomp 
+        find_gig_venue = Venue.find_by(name: gig_venue)
 
-    def update_a_gig
-        prompt.select("Which gig would you like update?") do |menu|
-
-        end
-    end
-
-    def update_musician_account
-        self.update(name: update_name)
-        self.update(bio: update_bio)
-        self.update(website_url: update_url)
-        self.update(instrument: instrument)
-    end
-
-    def delete_a_gig 
-        puts "What's the name of your gig?"
-        gig_name = gets.chomp
-        puts "What's the Venue where your gig is taking place?"
-        gig_venue = gets.chomp
-        gig_to_destroy = Gig.find_by(name: gig_name, venue_id: gig_venue)
-        gig_to_destroy.destroy
-        puts "Success! You've deleted a gig for #{gig_name} at #{gig_venue.name}!" 
-    end
-
-    def list_venues 
-        puts "#{self.name} has gigs at these venues:"
-        venue_names = self.gigs.map do |gig| 
-            {name: gig.venue.name, value: gig.id}
-        end
-        choice = TTY::Prompt.new.select("Select venues for more details:", venue_names)
+        new_gig = Gig.create(name: gig_name, venue_id: find_gig_venue.id, musician_id: self.id, description: gig_description)
+        puts "You've successfully created a new gig for #{self.name} named #{new_gig.name} at #{new_gig.venue.name} with the following description: #{new_gig.description}."
+        
     end
 
 

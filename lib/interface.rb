@@ -22,14 +22,14 @@ class Interface
     menu.choice "Create a Gig", -> {self.musician.create_a_gig}
     menu.choice "Update My Musician Bio", -> {self.musician.update_musician_bio}
     menu.choice "Update a Gig", -> {self.musician.update_gig}
-    menu.choice "See Your Gig Venues", -> {self.musician.list_venues}
+    menu.choice "See My Gig Venues", -> {self.musician.list_venues}
     menu.choice "Delete a Gig", -> {self.musician.delete_a_gig}
-    menu.choice "Show All Gigs", -> {self.musician.display_gigs} 
-    menu.choice "How Many Gigs Do I Have Listed?", -> {self.musician.count_gigs}
+    menu.choice "Show My Gigs", -> {self.musician.display_gigs} 
+    menu.choice "Count My Gigs", -> {self.musician.count_gigs}
     end
   end
 
-  
+
 
 
 end

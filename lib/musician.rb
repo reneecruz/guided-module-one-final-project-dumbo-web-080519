@@ -101,10 +101,12 @@ class Musician < ActiveRecord::Base
     end
 
     def delete_a_gig 
-       display_gigs
-       puts "Which gig would you like to delete?"
-       gig_to_delete = gets.chomp
-       find_gig_to_delete = Gig.find_by(name: gig_to_delete)
+       display_gigs.each do |gig|
+        puts "Gig: #{gig.name}, ID: #{gig.id}, Venue: #{gig.venue.name}"
+       end
+        puts "Which gig would you like to delete? Please enter the ID"
+       gig_to_delete = gets.chomp.to_i
+       find_gig_to_delete = Gig.find_by(id: gig_to_delete)
        
        answer = TTY::Prompt.new.yes?("Are you really sure you want to delete this gig? #{gig_to_delete}", find_gig_to_delete.delete)
        puts "Gig, BYE! It is finished. That gig no longer exists. It has been destroyed."

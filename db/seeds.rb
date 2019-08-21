@@ -11,7 +11,7 @@ mamiko = Musician.create(name: "Mamiko Watanabe", bio: "She is a badass pianist.
 
 fat_cat = Venue.create(name: "Fat Cat", location: "75 Christopher Street, NY, NY, 10014", website_url: "fatcatmusic.org") 
 vanguard = Venue.create(name: "The Village Vanguard", location: "178 7th Ave S, NY, NY, 10014", website_url: "villagevanguard.com") 
-blue_note = Venue.create(name: "Blue Note Jazz Club", location: "131 W 3rd St, NY, NY, 10012", website_url: "bluenotejazz.com") 
+blue_note = Venue.create(name: "The Blue Note", location: "131 W 3rd St, NY, NY, 10012", website_url: "bluenotejazz.com") 
 zinc = Venue.create(name: "The Zinc Bar", location: "82 W 3rd S, NY, NY, 10012", website_url: "zincjazz.com") 
 smalls = Venue.create(name: "Smalls Jazz Club", location: "183 W 10th St, NY, NY, 10014", website_url: "smallslive.com") 
 mezzrow = Venue.create(name: "Mezzrow Jazz Club", location: "163 W 10th S, NY, NY, 10014", website_url: "mezzrow.com") 

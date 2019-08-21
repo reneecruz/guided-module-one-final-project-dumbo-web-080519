@@ -5,9 +5,9 @@ gem "sinatra-activerecord"
 gem "sqlite3"
 gem "pry"
 gem "require_all"
-gem "activerecord", "~> 5.2.0"
+# gem "activerecord", "~> 5.2.0"
 
-gem "tty"
+gem 'tty-prompt'
 gem "nokogiri"
 
 # group :development do

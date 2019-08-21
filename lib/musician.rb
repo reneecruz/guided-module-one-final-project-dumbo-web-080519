@@ -3,6 +3,7 @@ class Musician < ActiveRecord::Base
     has_many :venues, through: :gigs 
 
     def self.handle_returning_musician 
+        system "clear"
         puts "Welcome back! What's your name?"
         name = gets.chomp 
         Musician.find_by(name: name)
@@ -24,8 +25,8 @@ class Musician < ActiveRecord::Base
         #     hash["#{i + 1}| #{gig.name} - #{venue.name}"] = gig.id
         #     hash
         # end
-        choice = TTY::Prompt.new.select("Select gigs for more details:", gig_names)
-        gig = Gig.find(choice)
+        answer =  TTY::Prompt.new.select("Select gigs for more details:", gig_names)
+        gig = Gig.find(answer)
         # binding.pry
     end 
 
@@ -35,22 +36,21 @@ class Musician < ActiveRecord::Base
        end
       end
 
-
-    # def list_gigs 
-    #     puts "Here are the gigs for #{self.name}:"
-    #     gig_names = self.gigs.map do |gig| 
-    #         {name: self.name, value: self.id}
-    #     end 
-
     def create_a_gig 
         puts "What's the name of your gig?"
         gig_name = gets.chomp
         puts "What's the venue of your gig?"
         gig_venue = gets.chomp 
+        find_gig_venue = Venue.find_by(name: gig_venue)
+            if find_gig_venue == nil
+            create_gig_venue = Venue.create(name: gig_venue)
+            new_venue = create_gig_venue.name
+            find_gig_venue = Venue.find_by(name: new_venue)
+            end
+
         puts "What's the description for your gig?"
         gig_description = gets.chomp 
 
-        find_gig_venue = Venue.find_by(name: gig_venue)
         new_gig = Gig.create(name: gig_name, venue_id: find_gig_venue.id, musician_id: self.id, description: gig_description)
         puts "You've successfully created a new gig for #{self.name} named #{new_gig.name} at #{new_gig.venue.name} with the following description: #{new_gig.description}."
     end

@@ -11,6 +11,10 @@ cli.musician = musician_object
 
 choice = cli.main_menu
 
+# while choice != "exit"
+#     choice = cli.main_menu
+# end
+
 
 # binding.pry 
 

@@ -6,6 +6,7 @@ class Interface
   end
 
   def welcome 
+    system "clear"
     puts "Welcome to the Gig Lister Application! 🎷"
 
     answer = prompt.select("Are you a returning user or a new user?") do |menu|
@@ -29,73 +30,5 @@ class Interface
     end
   end
 
-
-
-
 end
-
-
-
-#prompt = TTY::Prompt.new
-  
-# prompt.ask("Your question here")
-  
-# prompt.yes?("Are you a dog")
-  
-# prompt.mask("Enter your password:")
-  
-# prompt.select("What's your favorite kind of taco shell?", %w(Soft_taco Hard_taco 
-# Porque_no_los_dos?))
-
-# prompt.multi_select("What's your favorite pet?", %w(cats dogs fish 
-# birds reptiles plants))
-
-# prompt.enum_select("What's your favorite pet?", %w(cats 
-# dogs fish birds reptiles plants))
-
-# prompt.ask("What's your name?", default: 'Anonymous')
-# prompt.ask("What industry do you work in?", default: "Tech")
-
-# prompt.yes?("Is GrumpyCat grumpy?", default: true)
-
-# prompt.select("Choose your fruit of choice") do |menu|
-#   menu.default 3
-
-#    menu.choice "Papaya", 1
-#    menu.choice "Mango", 2
-#    menu.choice "Watermelon", 3
-#  end
-
-#  prompt.multi_select("Select tea?") do |menu|
-#   menu.default 2, 5
-
-#    menu.choice :green
-#    menu.choice :black
-#    menu.choice :white
-#    menu.choice :earl_grey
-#    menu.choice :sweet
-#  end
-
-#  prompt.mask("Enter a password: ", required: true)
-
-#  prompt.ask("What is your name?", required: true)
-
-# end
-   
-
-      
-
-     
-
-      
-
-
-      # def find_lines(station)
-      #   station.lines
-      # end
-
-     
-
-
-
 

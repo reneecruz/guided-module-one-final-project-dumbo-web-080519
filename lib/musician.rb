@@ -25,9 +25,13 @@ class Musician < ActiveRecord::Base
     end 
 
     def display_gigs
-       self.gigs.each do |gig|
-        puts "#{self.name} is playing a gig as #{gig.name} at the venue #{gig.venue.name}."
-       end
+        if self.gigs == nil 
+            puts "Sorry, you don't have any gigs listed right now!"
+        else
+            self.gigs.each do |gig|
+            puts "#{self.name} is playing a gig as #{gig.name} at the venue #{gig.venue.name}."
+            end
+        end
     end
 
     def create_a_gig 
@@ -87,10 +91,21 @@ class Musician < ActiveRecord::Base
             puts "This is your current gig venue: #{gig_to_update.venue.name}"
             puts "Please enter your updated venue name." 
             updated_venue_name = gets.chomp 
+
+            find_gig_venue = Venue.find_by(name: updated_venue_name)
+            if find_gig_venue == nil
+            create_gig_venue = Venue.create(name: updated_venue_name)
+            new_venue = create_gig_venue.name
+            find_gig_venue = Venue.find_by(name: new_venue)
+            end
+
+            new_venue = Venue.find_by(name: updated_venue_name)
+
+            gig_to_update.update(venue_id: new_venue.id)
             
-            gig_to_update.update(venue_id: updated_venue_name)
-            updated_venue = Venue.find_by(name: updated_venue_name)
-            puts "Success! You've updated your gig venue to #{updated_venue.name}"
+            # gig_to_update.update(venue_id: updated_venue_name)
+            # updated_venue = Venue.find_by(name: updated_venue_name)
+            puts "Success! You've updated your gig venue to #{gig_to_update.venue.name}"
         end
     end
 
@@ -101,7 +116,10 @@ class Musician < ActiveRecord::Base
         puts "Which gig would you like to delete? Please enter the ID"
        gig_to_delete = gets.chomp.to_i
        find_gig_to_delete = Gig.find_by(id: gig_to_delete)
-       
+        if find_gig_to_delete == nil 
+            puts "Sorry, you don't have any gigs to delete right now!"
+        end
+        
        answer = TTY::Prompt.new.yes?("Are you really sure you want to delete this gig? #{gig_to_delete}", find_gig_to_delete.delete)
        puts "Gig, BYE! It is finished. That gig no longer exists. It has been destroyed."
     end

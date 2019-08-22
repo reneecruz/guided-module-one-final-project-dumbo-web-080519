@@ -19,15 +19,17 @@ class Interface
     system "clear"
     musician.reload
     prompt.select("Welcome, #{self.musician.name}! What would you like to do today?") do |menu|
-    menu.choice "See My Gigs", -> {self.musician.list_gigs}
+    menu.choice "Select Gigs", -> {self.musician.list_gigs}
     menu.choice "Create a Gig", -> {self.musician.create_a_gig}
     menu.choice "Update My Musician Bio", -> {self.musician.update_musician_bio}
     menu.choice "Update a Gig", -> {self.musician.update_gig}
-    menu.choice "See My Gig Venues", -> {self.musician.list_venues}
+    menu.choice "List Gig Venues", -> {self.musician.list_venues}
     menu.choice "Delete a Gig", -> {self.musician.delete_a_gig}
-    menu.choice "Show My Gigs", -> {self.musician.display_gigs} 
+    menu.choice "Display Gig Details", -> {self.musician.display_gigs} 
     menu.choice "Count My Gigs", -> {self.musician.count_gigs}
     menu.choice "Venue Locations", -> {self.musician.venue_locations}
+    menu.choice "Update Musician Profile", -> {self.musician.update_musician_profile}
+    menu.choice "View Musician Profile", -> {self.musician.view_musician_profile}
     end
   end
 

@@ -123,6 +123,46 @@ def venue_locations
     end
 end
 
+def view_musician_profile
+    puts "Here's what we've got on file for you:" 
+    puts "Name: #{self.name}"
+    puts "Bio: #{self.bio}"
+    puts "Url: #{self.website_url}"
+    puts "Instrument: #{self.instrument}"
+end
+
+def update_musician_profile
+    view_musician_profile
+
+    choices = %w(name bio url instrument)
+    answer = TTY::Prompt.new.select("Select what you'd like to update:", choices)
+
+    case answer 
+    when "name"
+        puts "Please enter the new name you'd like to use:"
+        updated_name = gets.chomp.downcase
+        self.update(name: updated_name)
+        puts "Success! Here's your updated name: #{self.name}"
+    when "bio"
+        puts "Please enter the new bio you'd like to use:"
+        updated_bio = gets.chomp.downcase
+        self.update(bio: updated_bio)
+        puts "Success! Here's your updated bio: #{self.bio}"
+    when "url"
+        puts "Please enter the new url you'd like to use:"
+        updated_url = gets.chomp.downcase
+        self.update(website_url: updated_url)
+        puts "Success! Here's your updated url: #{self.website_url}"
+    when "instrument"
+        puts "Please enter the new instrument you'd like to use:"
+        updated_instrument = gets.chomp.downcase
+        self.update(instrument: updated_instrument)
+        puts "Success! Here's your updated instrument: #{self.instrument}"
+    end
+
+
+end
+
 end
 
    

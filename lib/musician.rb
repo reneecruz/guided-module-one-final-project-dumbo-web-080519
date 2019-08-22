@@ -20,21 +20,15 @@ class Musician < ActiveRecord::Base
         gig_names = self.gigs.map do |gig| 
             {name: gig.name, value: gig.id}
         end
-        # gig_names = self.gigs.each_with_index.inject({}) do |hash, (gig, i)|
-        #     venue = Venue.find(gig.venue_id)
-        #     hash["#{i + 1}| #{gig.name} - #{venue.name}"] = gig.id
-        #     hash
-        # end
-        answer =  TTY::Prompt.new.select("Select gigs for more details:", gig_names)
-        gig = Gig.find(answer)
-        # binding.pry
+        answer =  TTY::Prompt.new.multi_select("Select gigs for more details:", gig_names)
+       
     end 
 
     def display_gigs
        self.gigs.each do |gig|
         puts "#{self.name} is playing a gig as #{gig.name} at the venue #{gig.venue.name}."
        end
-      end
+    end
 
     def create_a_gig 
         puts "What's the name of your gig?"
@@ -119,7 +113,13 @@ end
 def list_venues
     puts "Here are all the venues where you're playing gigs: "
     self.venues.each do |venue|
-    puts venue.name
+    puts "#{venue.name}"
+    end
+end
+
+def venue_locations 
+    self.venues.each do |venue|
+    puts "Your gig at #{venue.name} is located at #{venue.location}"
     end
 end
 

@@ -2,7 +2,7 @@ class Interface
   attr_accessor :prompt, :musician
 
   def initialize() 
-    @prompt = TTY::Prompt.new 
+    @prompt = TTY::Prompt.new(active_color: :yellow)
   end
 
   def welcome 
@@ -27,6 +27,7 @@ class Interface
     menu.choice "Delete a Gig", -> {self.musician.delete_a_gig}
     menu.choice "Show My Gigs", -> {self.musician.display_gigs} 
     menu.choice "Count My Gigs", -> {self.musician.count_gigs}
+    menu.choice "Venue Locations", -> {self.musician.venue_locations}
     end
   end
 

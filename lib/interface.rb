@@ -18,7 +18,7 @@ class Interface
   def main_menu
     system "clear"
     musician.reload
-    prompt.select("Welcome, #{self.musician.name}! What would you like to do today?") do |menu|
+    prompt.select("Oh hey, #{self.musician.name}! What would you like to do today?".colorize(:cyan), per_page: 15) do |menu|
     menu.choice "Select Gigs", -> {self.musician.list_gigs}
     menu.choice "Create a Gig", -> {self.musician.create_a_gig}
     menu.choice "Update My Musician Bio", -> {self.musician.update_musician_bio}
@@ -30,6 +30,7 @@ class Interface
     menu.choice "Venue Locations", -> {self.musician.venue_locations}
     menu.choice "Update Musician Profile", -> {self.musician.update_musician_profile}
     menu.choice "View Musician Profile", -> {self.musician.view_musician_profile}
+    menu.choice "Exit", -> {exit!}
     end
   end
 
